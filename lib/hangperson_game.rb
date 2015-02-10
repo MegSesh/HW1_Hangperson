@@ -33,6 +33,7 @@ class HangpersonGame
     end
 
     #throws Argument Error when not a letter
+    s.downcase!
     if /^[A-Za-z]/.match(s) == nil
       raise ArgumentError.new('The input is not a letter')
     end
