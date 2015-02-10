@@ -60,17 +60,41 @@ class HangpersonApp < Sinatra::Base
   # @wrong_guesses and @word_with_guesses, so set those up here.
   get '/show' do
     ### YOUR CODE HERE ###
-    erb :show # You may change/remove this line
+    #erb :show # You may change/remove this line
+
+    #wrong_guesses = @game.wrong_guesses
+    #word_with_guesses = @game.word_with_guesses()
+
+    #check whether the game state it is about to show is actually a winning or losing state, and if so, redirect to appropriate win or lose action
+
+    if @game.check_win_or_lose() == :win
+      redirect '/win'
+    end
+
+    if @game.check_win_or_lose() == :lose
+      redirect '/lose'
+    end
+    erb :show
   end
 
   get '/win' do
     ### YOUR CODE HERE ###
-    erb :win # You may change/remove this line
+    #erb :win # You may change/remove this line
+    #redirect '/show'
+    unless @game.check_win_or_lose() == :win
+      redirect '/show'
+    end
+    erb :win
   end
 
   get '/lose' do
     ### YOUR CODE HERE ###
-    erb :lose # You may change/remove this line
+    #erb :lose # You may change/remove this line
+    #redirect '/show'
+    unless @game.check_win_or_lose() == :lose
+      redirect '/show'
+    end
+    erb :lose
   end
 
 end

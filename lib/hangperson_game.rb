@@ -25,12 +25,15 @@ class HangpersonGame
 
     #(1) invalid
     #throws ArgumentError when nil or empty
-    if s == ''
+    if s.nil? == true
       raise ArgumentError.new('The input is nil or an empty string')
+    end
+    if s.empty? == true
+      raise ArgumentError.new('The input is nil')
     end
 
     #throws Argument Error when not a letter
-    if /^[A-Z a-z]/.match(s) == nil
+    if /^[A-Za-z]/.match(s) == nil
       raise ArgumentError.new('The input is not a letter')
     end
 
@@ -69,7 +72,8 @@ class HangpersonGame
     #returns one of the symbols :win, :lose, or :play depending on current game state
 
     #when all letters are guessed, return :win
-    if @guesses.length == word.length
+
+    if @guesses.length == word.chars.to_a.uniq.length
       return :win
     end
 
